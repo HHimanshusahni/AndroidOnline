@@ -115,7 +115,22 @@ public class MainActivity extends AppCompatActivity {
                 // When the read operation failed
             }
         });
+        //VALUE EVENT LISTENER
+        dbRef.child("note").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Gets the entire database  regardless of the operation
 
+                // DataSnapshot will have list of all the databases
+                // when we use getvalue on it we pass the arraylist of stirngs
+                //  arraylist loop over and get the list
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
