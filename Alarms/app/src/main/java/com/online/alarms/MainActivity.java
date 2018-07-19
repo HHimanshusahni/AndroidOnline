@@ -46,6 +46,16 @@ NOTE wakeup : when phone gets into active state when it is in the sleep mode
 
 ----------------------------------------------------------
 
+alarmManager.set () ---> triggers the alaram only once
+alarmMangger.setRepeatingAlarmManager ---> trigger the alarm multiple times after interval
+                        --->
+alarmManager.setInexactRepeating --> the deadline is not exactly fixed
+                                 --> it is preferred as it will not drain battery too much and wake up phone unnecerraliy
+
+
+----------------------------------------------
+JOB SCHEDULER is preferred over alarms
+
 */
 public class MainActivity extends AppCompatActivity {
 
@@ -60,20 +70,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent i = new Intent(getBaseContext(),Main2Activity.class);
-                // Schedule a task that will run 1 mins from now and start my app
-
-                // generally we use intens but in alarms we use pending intents as app may be close
-
-//                PendingIntent pi = new PendingIntent() //error not correct
-
-
-
-                  PendingIntent pi = PendingIntent.getActivity(getBaseContext(),12345,i,PendingIntent.FLAG_ONE_SHOT);
-
-
+//                PendingIntent pi = PendingIntent.getActivity(getBaseContext(),12345,i,PendingIntent.FLAG_ONE_SHOT);
+                PendingIntent pi = PendingIntent.getActivity(getBaseContext(),12345,i,PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-                alarmManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime()+1*60*1000,pi);
-                // currentime +the time delayfor scheduling the alarm
+                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
+                        SystemClock.elapsedRealtime()+60000,
+                        60000,pi);
 
             }
         });
