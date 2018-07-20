@@ -17,7 +17,7 @@ public class DemoJob extends JobService {
         jobFinished(params,false);
 
 
-        Toast.makeText(this, "Hello, I'm a scheduled Job",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Hello, I'm a scheduled Job",Toast.LENGTH_LONG).show();
         return false; // false : job is complete do not let it live
     }                 // true: for Async job : there is still work going on, so don't finis this Service just yet
 
