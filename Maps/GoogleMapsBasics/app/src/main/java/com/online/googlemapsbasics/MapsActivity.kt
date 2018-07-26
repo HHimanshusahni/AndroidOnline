@@ -67,5 +67,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         .strokeWidth(3f)
                         .fillColor(Color.argb(70,150,50,50))
         )
+//        mMap.isTrafficEnabled = true
+        mMap.isBuildingsEnabled = true
+
+        mMap.uiSettings.isCompassEnabled = true
+        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isRotateGesturesEnabled =true
+
+
     }
 }
